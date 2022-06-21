@@ -1,0 +1,53 @@
+scalar OptionScalar
+
+type Query {
+  users(options: OptionScalar): UsersOutput
+  contacts(options: OptionScalar): ContactsOutput
+}
+
+type Mutation {
+  # updateUserFromRole(input: userUpdateFromRoleInput): User
+  deleteContact(input: ID!): ID
+}
+
+input userUpdateFromRoleInput {
+  _id: ID!
+  username: String!
+  email: String!
+  profilePic: String
+  passportId: String
+  role: Int!
+  isActive: Boolean!
+  createdAt: String
+}
+
+type User {
+  _id: ID!
+  username: String!
+  email: String!
+  profilePic: String
+  authType: Int!
+  role: Int!
+  isActive: Boolean!
+  createdAt: String
+}
+
+type UsersOutput {
+  users: [User]
+  count: Int
+}
+
+type ContactsOutput {
+  contacts: [Contact]
+  count: Int
+}
+
+
+type Contact {
+  _id: ID
+  name: String
+  email: String
+  content: String
+  replied: Boolean
+  createdAt: String
+}
